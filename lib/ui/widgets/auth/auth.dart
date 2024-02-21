@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lazyload_app/theme/app_colors.dart';
-import 'package:lazyload_app/theme/custom_app_bar.dart';
-import 'package:lazyload_app/theme/drawer_menu.dart';
-import 'package:lazyload_app/widgets/auth/header_widget.dart';
+import 'package:lazyload_app/ui/theme/app_colors.dart';
+import 'package:lazyload_app/ui/theme/custom_app_bar.dart';
+import 'package:lazyload_app/ui/theme/drawer_menu.dart';
+import 'package:lazyload_app/ui/widgets/auth/header_widget.dart';
 
 class Auth extends StatefulWidget {
   const Auth({Key? key}) : super(key: key);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lazyload_app/models/auth_model.dart';
-import 'package:lazyload_app/theme/app_colors.dart';
-import 'package:lazyload_app/widgets/auth/auth.dart';
-import 'package:lazyload_app/widgets/main_screen/main_screen_widget.dart';
-import 'package:lazyload_app/widgets/movie_details/movie_main_detail/movie_details_widget.dart';
+import 'package:lazyload_app/ui/theme/app_colors.dart';
+import 'package:lazyload_app/ui/widgets/auth/auth.dart';
+import 'package:lazyload_app/ui/widgets/main_screen/main_screen_widget.dart';
+import 'package:lazyload_app/ui/widgets/movie_details/movie_main_detail/movie_details_widget.dart';
 
 void main() {
   runApp(const MyApp());

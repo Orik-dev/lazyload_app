@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lazyload_app/widgets/auth/form_widget.dart';
+import 'package:lazyload_app/ui/widgets/auth/form_widget.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lazyload_app/theme/custom_app_bar.dart';
-import 'package:lazyload_app/theme/drawer_menu.dart';
-import 'package:lazyload_app/widgets/movie_list/movie_list_widget.dart';
+import 'package:lazyload_app/ui/theme/custom_app_bar.dart';
+import 'package:lazyload_app/ui/theme/drawer_menu.dart';
+import 'package:lazyload_app/ui/widgets/movie_list/movie_list_widget.dart';
 
 class MainScreenWidget extends StatefulWidget {
   const MainScreenWidget({super.key});

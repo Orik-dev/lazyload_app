@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lazyload_app/widgets/widget.dart';
+import 'package:lazyload_app/ui/widgets/widget.dart';
 
 class RaitingPlayWidget extends StatelessWidget {
   const RaitingPlayWidget({
