@@ -6,8 +6,8 @@ import 'package:lazyload_app/ui/widgets/movie_details/movie_main_detail/movie_de
 
 abstract class MainNavigationRouteName {
   static const auth = 'auth';
-  static const mainScreen = '/main_screen';
-  static const movieDetails = '/main_screen/movie_details';
+  static const mainScreen = '/';
+  static const movieDetails = '/movie_details';
 }
 
 class MainNavigation {
@@ -15,8 +15,8 @@ class MainNavigation {
       ? MainNavigationRouteName.mainScreen
       : MainNavigationRouteName.auth;
   final routes = <String, Widget Function(BuildContext)>{
-    '/auth': (context) => AuthProvider(model: AuthModel(), child: const Auth()),
-    '/main_screen': (context) => const MainScreenWidget(),
+   MainNavigationRouteName.auth: (context) => AuthProvider(model: AuthModel(), child: const Auth()),
+    MainNavigationRouteName.mainScreen: (context) => const MainScreenWidget(),
     '/main_screen/movie_details': (context) {
       final arguments = ModalRoute.of(context)?.settings.arguments as int;
       if (arguments is int) {

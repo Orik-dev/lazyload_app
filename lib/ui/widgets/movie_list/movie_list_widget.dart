@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lazyload_app/models/movie.dart';
 import 'package:lazyload_app/resources/resources.dart';
+import 'package:lazyload_app/ui/navigation/main_navigation.dart';
 
 class MovieListWidget extends StatefulWidget {
   const MovieListWidget({super.key});
@@ -79,8 +80,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
 
   void _onMovieTap(int index) {
     final id = _movies[index].id;
-    Navigator.of(context)
-        .pushNamed('/main_screen/movie_details', arguments: id);
+   Navigator.of(context).pushNamed(MainNavigationRouteName.mainScreen,arguments: id);
   }
 
   @override
