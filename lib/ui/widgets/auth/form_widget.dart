@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:lazyload_app/models/auth_model.dart';
+import 'package:lazyload_app/Libary/Widgets/inherited/provider.dart';
+import 'package:lazyload_app/ui/widgets/auth/auth_model.dart';
 
 class FormWidget extends StatelessWidget {
   const FormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final model = AuthProvider.read(context)?.model;
+    final model = NotifierProvider.read<AuthModel>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -73,10 +74,10 @@ class _AuthButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = AuthProvider.watch(context).model;
+    final model = NotifierProvider.watch<AuthModel>(context);
     final onPressed =
-        model.canStartAuth == true ? () => model.auth(context) : null;
-    final child = model.isAuthProgress == true
+        model?.canStartAuth == true ? () => model?.auth(context) : null;
+    final child = model?.isAuthProgress == true
         ? const SizedBox(
             width: 15,
             height: 15,
@@ -104,7 +105,7 @@ class _ErrorMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final errorMessage = AuthProvider.watch(context).model.errorMesage;
+    final errorMessage = NotifierProvider.watch<AuthModel>(context)?.errorMesage;
     if (errorMessage == null) return const SizedBox.shrink();
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),

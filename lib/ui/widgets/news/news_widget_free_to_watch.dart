@@ -50,52 +50,54 @@ class _NewsWidgetFreeToWatchState extends State<NewsWidgetFreeToWatch> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 20),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: const Image(
-                              image: AssetImage(AppImages.moviePlacholder),
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: const Image(
+                                image: AssetImage(AppImages.moviePlacholder),
+                              ),
                             ),
                           ),
-                        ),
-                        Positioned(
-                          top: 15,
-                          right: 15,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey.withOpacity(0.7),
-                              borderRadius: BorderRadius.circular(20),
+                          Positioned(
+                            top: 15,
+                            right: 15,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(0.7),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Icon(Icons.more_horiz),
                             ),
-                            child: const Icon(Icons.more_horiz),
                           ),
-                        ),
-                        const Positioned(
-                          left: 10,
-                          bottom: 0,
-                          child: SizedBox(
-                            width: 40,
-                            height: 40,
-                            child: RadialPercentWidget(
-                              percent: 0.68,
-                              fillColor: Color.fromARGB(255, 10, 23, 25),
-                              lineColor:
-                              Color.fromARGB(255, 37, 203, 103),
-                              freeColor: Color.fromARGB(255, 25, 54, 31),
-                              lineWidth: 3,
-                              child: Text(
-                                '68%',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 11,
+                          const Positioned(
+                            left: 10,
+                            bottom: 0,
+                            child: SizedBox(
+                              width: 40,
+                              height: 40,
+                              child: RadialPercentWidget(
+                                percent: 0.68,
+                                fillColor: Color.fromARGB(255, 10, 23, 25),
+                                lineColor:
+                                Color.fromARGB(255, 37, 203, 103),
+                                freeColor: Color.fromARGB(255, 25, 54, 31),
+                                lineWidth: 3,
+                                child: Text(
+                                  '68%',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 11,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(left: 10, top: 10, right: 10),

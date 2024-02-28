@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lazyload_app/Libary/Widgets/inherited/provider.dart';
 import 'package:lazyload_app/ui/theme/custom_app_bar.dart';
 import 'package:lazyload_app/ui/theme/drawer_menu.dart';
+import 'package:lazyload_app/ui/widgets/movie_list/movie_list_model.dart';
 import 'package:lazyload_app/ui/widgets/movie_list/movie_list_widget.dart';
+import 'package:lazyload_app/ui/widgets/news/new_widget.dart';
 
 class MainScreenWidget extends StatefulWidget {
   const MainScreenWidget({super.key});
@@ -12,12 +15,21 @@ class MainScreenWidget extends StatefulWidget {
 
 class _MainScreenWidgetState extends State<MainScreenWidget> {
   int _selectedIndex = 0;
+  final movieListModel = MovieListModel();
 
   void onSelectIndex(int index) {
     if (_selectedIndex == index) return;
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    movieListModel.setupLocale(context);
+    movieListModel.loadMovies();
   }
 
   @override
@@ -47,10 +59,13 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       body: Center(
         child: IndexedStack(
           index: _selectedIndex,
-          children: const [
-            Text('Новости'),
-            MovieListWidget(),
-            Text('Сериалы'),
+          children: [
+            const NewsWidget(),
+            NotifierProvider(
+              model: movieListModel,
+              child: const MovieListWidget(),
+            ),
+            const Text('Сериалы'),
           ],
         ),
       ),
