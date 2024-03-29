@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lazyload_app/my_app_model.dart';
 import 'package:lazyload_app/ui/navigation/main_navigation.dart';
 import 'package:lazyload_app/ui/theme/app_colors.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,15 @@ class MyApp extends StatelessWidget {
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.grey,
           )),
+      localizationsDelegates: const [ // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ru'), // Russian
+        Locale('en'), // English
+      ],
       routes: mainNavigation.routes,
       initialRoute: mainNavigation.initialRoute(model.isAuth),
     );

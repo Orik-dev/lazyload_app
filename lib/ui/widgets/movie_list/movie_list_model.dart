@@ -7,22 +7,26 @@ import 'package:lazyload_app/ui/navigation/main_navigation.dart';
 class MovieListModel extends ChangeNotifier {
   final _apiClient = ApiClient();
   final _movies = <Movie>[];
-  late String _locale;
-
   List<Movie> get movies => List.unmodifiable(_movies);
-  final _dateFormat = DateFormat.yMMMMd();
+  late DateFormat _dateFormat;
+  String _locale = '';
 
   String stringFromDate(DateTime? date) =>
       date != null ? _dateFormat.format(date) : '';
 
-  Future<void> loadMovies() async {
-    final moviesResponse = await _apiClient.popularMovie(1, 'ru-Ru');
-    _movies.addAll(moviesResponse.movies);
-    notifyListeners();
+  void setupLocale(BuildContext context) {
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    if (_locale == locale) return;
+    _locale = locale;
+    _dateFormat = DateFormat.yMMMMd(locale);
+    _movies.clear();
+    _loadMovies();
   }
 
-  void setupLocale(BuildContext context){
-    final locale = Localizations.localeOf(context);
+  Future<void> _loadMovies() async {
+    final moviesResponse = await _apiClient.popularMovie(1, _locale);
+    _movies.addAll(moviesResponse.movies);
+    notifyListeners();
   }
 
   void onMovieTap(BuildContext context, int index) {
