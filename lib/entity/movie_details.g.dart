@@ -31,9 +31,7 @@ MovieDetails _$MovieDetailsFromJson(Map<String, dynamic> json) => MovieDetails(
       productionCountries: (json['production_countries'] as List<dynamic>)
           .map((e) => ProductionCountrie.fromJson(e as Map<String, dynamic>))
           .toList(),
-      releaseDate: json['release_date'] == null
-          ? null
-          : DateTime.parse(json['release_date'] as String),
+      releaseDate: parseMovieDateFromString(json['release_date'] as String?),
       revenue: json['revenue'] as int,
       runtime: json['runtime'] as int?,
       spokenLanguages: (json['spoken_languages'] as List<dynamic>)
@@ -45,6 +43,8 @@ MovieDetails _$MovieDetailsFromJson(Map<String, dynamic> json) => MovieDetails(
       video: json['video'] as bool,
       voteAverage: (json['vote_average'] as num).toDouble(),
       voteCount: json['vote_count'] as int,
+      videos:
+          MovieDetailsVideos.fromJson(json['videos'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MovieDetailsToJson(MovieDetails instance) =>
@@ -77,6 +77,7 @@ Map<String, dynamic> _$MovieDetailsToJson(MovieDetails instance) =>
       'video': instance.video,
       'vote_average': instance.voteAverage,
       'vote_count': instance.voteCount,
+      'videos': instance.videos.toJson(),
     };
 
 BelongsToCollection _$BelongsToCollectionFromJson(Map<String, dynamic> json) =>

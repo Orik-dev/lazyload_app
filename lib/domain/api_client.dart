@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:lazyload_app/entity/movie_details.dart';
 import 'package:lazyload_app/entity/popular_movie_response.dart';
 
 enum ApiClientExceptionType { Network, Auth, Other }
@@ -130,6 +131,7 @@ class ApiClient {
       final response = PopularMovieResponse.fromJson(jsonMap);
       return response;
     }
+
     final result = _get(
       '/search/movie',
       parser,
@@ -138,7 +140,28 @@ class ApiClient {
         'page': page.toString(),
         'query': query,
         'language': locale,
-        'include_adult' : true.toString(),
+        'include_adult': true.toString(),
+      },
+    );
+    return result;
+  }
+
+  Future<MovieDetails> movieDetails(
+    int movieId,
+    String locale,
+  ) async {
+    parser(dynamic json) {
+      final jsonMap = json as Map<String, dynamic>;
+      final response = MovieDetails.fromJson(jsonMap);
+      return response;
+    }
+    final result = _get(
+      '/movie/$movieId',
+      parser,
+      <String, dynamic>{
+        'append_to_response': 'credits,videos',
+        'api_key': _apiKey,
+        'language': locale,
       },
     );
     return result;

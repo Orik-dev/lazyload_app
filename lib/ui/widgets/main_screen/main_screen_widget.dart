@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lazyload_app/Libary/Widgets/inherited/provider.dart';
+import 'package:lazyload_app/domain/data_providers/session_data_provider.dart';
 import 'package:lazyload_app/ui/theme/custom_app_bar.dart';
 import 'package:lazyload_app/ui/theme/drawer_menu.dart';
 import 'package:lazyload_app/ui/widgets/movie_list/movie_list_model.dart';
@@ -34,7 +35,15 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const DrawerMenu(),
-      appBar: const CustomAppBar(),
+       appBar: AppBar(
+        title: const Text('TMDB'),
+        actions: [
+          IconButton(
+            onPressed: () => SessionDataProvider().setSessionId(null),
+            icon: const Icon(Icons.search),
+          )
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         items: const [
@@ -60,7 +69,8 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
           children: [
             const NewsWidget(),
             NotifierProvider(
-              model: movieListModel,
+              create: () => movieListModel,
+              isManagingModel: false,
               child: const MovieListWidget(),
             ),
             const Text('Сериалы'),

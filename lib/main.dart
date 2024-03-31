@@ -35,11 +35,12 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('ru'), // Russian
-        Locale('en'), // English
+        Locale('ru', 'RU'),
+        Locale('en', ''),// English
       ],
       routes: mainNavigation.routes,
       initialRoute: mainNavigation.initialRoute(model.isAuth),
+      onGenerateRoute: mainNavigation.onGenerateRoute,
     );
   }
 }

@@ -4,14 +4,14 @@ import 'package:lazyload_app/ui/theme/custom_app_bar.dart';
 import 'package:lazyload_app/ui/theme/drawer_menu.dart';
 import 'package:lazyload_app/ui/widgets/auth/header_widget.dart';
 
-class Auth extends StatefulWidget {
-  const Auth({Key? key}) : super(key: key);
+class AuthWidget extends StatefulWidget {
+  const AuthWidget({Key? key}) : super(key: key);
 
   @override
-  State<Auth> createState() => _AuthState();
+  State<AuthWidget> createState() => _AuthWidgetState();
 }
 
-class _AuthState extends State<Auth> {
+class _AuthWidgetState extends State<AuthWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
