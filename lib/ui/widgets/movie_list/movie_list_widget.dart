@@ -101,6 +101,7 @@ class MovieListWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(10),
           child: TextField(
+            contro
             decoration: InputDecoration(
                 labelText: 'Поиск',
                 filled: true,

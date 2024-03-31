@@ -16,7 +16,6 @@ class ApiClient {
   static const _imageUrl = 'https://image.tmdb.org/t/p/w500';
   static const _apiKey = 'ca465199911a9379e69b2785a7ae7e04';
 
-
   static String imageUrl(String path) => _imageUrl + path;
 
   Future<String> auth({
@@ -107,16 +106,41 @@ class ApiClient {
   }
 
   Future<PopularMovieResponse> popularMovie(int page, String locale) async {
-   parser(dynamic json) {
+    parser(dynamic json) {
       final jsonMap = json as Map<String, dynamic>;
       final response = PopularMovieResponse.fromJson(jsonMap);
       return response;
     }
+
     final result = _get('/movie/popular', parser, <String, dynamic>{
       'api_key': _apiKey,
       'page': page.toString(),
       'language': locale,
     });
+    return result;
+  }
+
+  Future<PopularMovieResponse> searchMovie(
+    int page,
+    String locale,
+    String query,
+  ) async {
+    parser(dynamic json) {
+      final jsonMap = json as Map<String, dynamic>;
+      final response = PopularMovieResponse.fromJson(jsonMap);
+      return response;
+    }
+    final result = _get(
+      '/search/movie',
+      parser,
+      <String, dynamic>{
+        'api_key': _apiKey,
+        'page': page.toString(),
+        'query': query,
+        'language': locale,
+        'include_adult' : true.toString(),
+      },
+    );
     return result;
   }
 
