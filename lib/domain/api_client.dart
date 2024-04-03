@@ -11,6 +11,13 @@ class ApiClientException implements Exception {
   ApiClientException(this.type);
 }
 
+// enum MediaType { Movie, Tv }
+// extension MediaTypeAsString on MediaType{
+//   String asString(){
+//     switch(this){}
+//   }
+// }
+
 class ApiClient {
   final _client = HttpClient();
   static const _host = 'https://api.themoviedb.org/3';
@@ -155,6 +162,7 @@ class ApiClient {
       final response = MovieDetails.fromJson(jsonMap);
       return response;
     }
+
     final result = _get(
       '/movie/$movieId',
       parser,
@@ -162,6 +170,47 @@ class ApiClient {
         'append_to_response': 'credits,videos',
         'api_key': _apiKey,
         'language': locale,
+      },
+    );
+    return result;
+  }
+
+  Future<int> getAccountInfo(
+    String sessionId,
+  ) async {
+    parser(dynamic json) {
+      final jsonMap = json as Map<String, dynamic>;
+      final result = jsonMap['id'] as int;
+      return result;
+    }
+
+    final result = _get(
+      '/account',
+      parser,
+      <String, dynamic>{
+        'api_key': _apiKey,
+        'session_id': sessionId,
+      },
+    );
+    return result;
+  }
+
+  Future<bool> isFavorite(
+    int movieId,
+    String sessionId,
+  ) async {
+    parser(dynamic json) {
+      final jsonMap = json as Map<String, dynamic>;
+      final result = jsonMap['favorite'] as bool;
+      return result;
+    }
+
+    final result = _get(
+      '/movie/$movieId/account_states',
+      parser,
+      <String, dynamic>{
+        'api_key': _apiKey,
+        'session_id': sessionId,
       },
     );
     return result;
@@ -191,6 +240,36 @@ class ApiClient {
     );
     return result;
   }
+
+  // Future<String> markAsFavorite({
+  //   required int accountId,
+  //   required String sessionId,
+  //   required MediaType mediaType,
+  //   required String mediaId,
+  //   required bool isFavorite,
+  // }) async {
+  //   parser(dynamic json) {
+  //     final jsonMap = json as Map<String, dynamic>;
+  //     final token = jsonMap['request_token'] as String;
+  //     return token;
+  //   }
+
+  //   final parameters = <String, dynamic>{
+  //     'username': username,
+  //     'password': password,
+  //     'request_token': requestToken,
+  //   };
+  //   final result = _post(
+  //     '/account/$accountId/favorite',
+  //     parameters,
+  //     parser,
+  //     <String, dynamic>{
+  //       'api_key': _apiKey,
+  //       'session_id': sessionId,
+  //     },
+  //   );
+  //   return result;
+  // }
 
   Future<String> _makeSession({
     required String requestToken,

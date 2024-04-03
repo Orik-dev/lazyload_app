@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lazyload_app/Libary/Widgets/inherited/provider.dart';
 import 'package:lazyload_app/domain/data_providers/session_data_provider.dart';
-import 'package:lazyload_app/ui/theme/custom_app_bar.dart';
-import 'package:lazyload_app/ui/theme/drawer_menu.dart';
 import 'package:lazyload_app/ui/widgets/movie_list/movie_list_model.dart';
 import 'package:lazyload_app/ui/widgets/movie_list/movie_list_widget.dart';
 import 'package:lazyload_app/ui/widgets/news/new_widget.dart';
@@ -34,7 +32,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const DrawerMenu(),
+      // drawer: const DrawerMenu(),
        appBar: AppBar(
         title: const Text('TMDB'),
         actions: [
